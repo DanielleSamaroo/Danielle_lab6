@@ -5,8 +5,17 @@ def password_encode(password):
     return encoded_password
 
 
-def password_decode(encoded_password):
-    pass
+def decoder(password):
+    decoded_password = " "
+    for x in password:
+        temp_pass = int(x)
+        temp_pass = int(temp_pass - 3)
+        if (int(temp_pass) > 0):
+            temp_pass = int(temp_pass) % 10
+        else:
+            temp_pass = 10 - int(temp_pass) * (-1)
+        decoded_password = decoded_password + str(temp_pass)
+    return decoded_password
 
 
 def print_menu():
@@ -18,15 +27,16 @@ def print_menu():
     return input("\nPlease enter an option: ")
 
 if __name__ == '__main__':
+    # prints menu and asks for input in a loop
     while True:
-        option = print_menu()
-        if option == '1': # Encodes program
-            # prompt user for password
-            password = input("Please enter your password to encode: ")
+        # function that prints menu
+        print_menu()
+        option = int(input("\nPlease enter an option: "))   # asks user for option input
+        if option == 1:
+            password = input("Please enter your password to encode: ")  # asks user for password to input
             print("Your password has been encoded and stored!\n")
-            # stores password and encodes
-            encoded_password = password_encode(password)
-        elif option == '2': # Decodes program
-            pass
-        elif option == '3': # Exits program
+        elif option == 2:
+            decoded_password = decoder(password)
+            print(f"The encoded password is {decoded_password}, and the original password is {password}")
+        elif option == 3:
             break
